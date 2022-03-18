@@ -57,5 +57,7 @@ cur.execute('''CREATE TABLE ferdigbrentkaffe (
   kaffebrenneriid text,
   CONSTRAINT ferdigbrentkaffe_pk PRIMARY KEY ()''')
 
+# Hello sindrou
+
 
                             
