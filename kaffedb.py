@@ -27,6 +27,26 @@ cur.execute('''
   kaffebrenneriid text,
   CONSTRAINT ferdigbrentkaffe_pk PRIMARY KEY (ferdigbrentkaffeid)
   );
+
+  CREATE TABLE kaffesmaking (
+
+KaffesmakingID INT NOT NULL,
+  Smaksnotater VARCHAR(100),
+  Poeng INT UNSIGNED CONSTRAINT CHECK (Poeng < 11) NOT NULL,
+  Smaksdato DATE NOT NULL,
+  BrukerID INT NOT NULL,
+  FerdigbrentKaffeID INT NOT NULL,
+  CONSTRAINT Kaffesmaking_PK PRIMARY KEY (KaffesmakingID),
+  CONSTRAINT Kaffesmaking_FK FOREIGN KEY (BrukerID) REFERENCES Bruker(BrukerID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+  CONSTRAINT Kaffesmaking_FK FOREIGN KEY (FerdigbrentKaffeID) REFERENCES FerdigbrentKaffe(FerdigbrentKaffeID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+
+  );
+
+
   ''')
 
   # Insert a row of datasdfds
@@ -38,8 +58,6 @@ con.commit()
 # We can also close the connection if we are done with it.
 # Just be sure any changes have been committed or they will be lost.
 con.close()
-
-
 
 cur = con.cursor()
 
