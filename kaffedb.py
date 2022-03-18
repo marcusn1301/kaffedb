@@ -9,10 +9,10 @@ cur = con.cursor()
 cur.execute('''
   CREATE TABLE bruker (
   brukerid INT NOT NULL,
-  epost text NOT NULL,
-  passord text NOT NULL,
-  fornavn text,
-  etternavn text,
+  epost varchar NOT NULL,
+  passord varchar NOT NULL,
+  fornavn varchar,
+  etternavn varchar,
   CONSTRAINT bruker_pk PRIMARY KEY (brukerid)
   );
 
@@ -27,8 +27,6 @@ cur.execute('''
   kaffebrenneriid text,
   CONSTRAINT ferdigbrentkaffe_pk PRIMARY KEY (ferdigbrentkaffeid)
   );
-
-
   ''')
 
   # Insert a row of datasdfds
