@@ -45,13 +45,13 @@ cur.execute('''
 ''')
 # Insert values
 brukere = (
-    (1, 'test@gmail.com', "52642", "Ola", "norman"),
-    (2, 'tesasdt@gmail.com', "52642", "Ola", "norman"),
-    (3, 'teasd8st@gmail.com', "52642", "Ola", "norman"),
-    (4, 'teaasdsadasdst@gmail.com', "52642", "Ola", "norman"),
-    (5, 'tesasdasdasdasdt@gmail.com', "52642", "Ola", "norman"),
-    (6, 'te24324st@gmail.com', "52642", "Ola", "norman"),
-    (7, 'te234234st@gmail.com', "52642", "Ola", "norman"),
+    (1, 'marius@gmail.com', "hemmeligpassord", "maius", "mariussen"),
+    (2, 'hei@gmail.com', "secretpassord123", "fornavn", "norman"),
+    (3, 'hu@stud.ntnu.no', "passord", ":D", "xD"),
+    (4, 'test@gmail.com', "passord123", "Kim", "norman"),
+    (5, 'bruker1@gmail.com', "secretkey123", "Apyr", "norman"),
+    (6, 'annenbruker@hotmail.com', "bruker1sucks", "Ola", "norman"),
+    (7, 'student@stud.ntnu.com', "12345678", "Ola2", "etternavn"),
 )
 # Insert into bruker
 cur.executemany("INSERT INTO bruker VALUES(?, ?, ?, ?, ?)", brukere)
@@ -82,15 +82,9 @@ cur.execute('''
 ''')
 # Insert values
 ferdigbrent_kaffe = (
-    (1, 'test@gmail.com', "52642", "Ola", "norman", 23.3, 2, 3),
-    (2, 'tesasdt@gmail.com', "52642", "Ola", "norman", 45.5, 23, 233),
-    (3, 'teasd8st@gmail.com', "52642", "Ola", "norman", 11.1, 123 ,123),
-    (4, 'teaasdsadasdst@gmail.com', "52642", "Ola", "norman", 234.3, 88, 66),
-    (5, 'tesasdasdasdasdt@gmail.com', "52642", "Ola", "norman", 98.9, 97, 77),
-    (6, 'te24324st@gmail.com', "52642", "Ola", "norman", 67.7, 345, 345),
-    (7, 'te234234st@gmail.com', "52642", "Ola", "norman", 344.3, 234, 122),
+    (1, 'Vinterkaffe 2022', "20.01.2022", "lysbrent", "En velsmakende og kompleks kaffe for mørketiden", 600,00, 1, 1),
 )
-# Insert into bruker
+# Insert into into ferdigbrent_kaffe
 cur.executemany("INSERT INTO ferdigbrent_kaffe VALUES(?, ?, ?, ?, ?, ?, ?, ?)", ferdigbrent_kaffe)
 
 #-----------------------------------------------------
@@ -98,6 +92,7 @@ cur.executemany("INSERT INTO ferdigbrent_kaffe VALUES(?, ?, ?, ?, ?, ?, ?, ?)", 
 #-----------------------------------------------------
 
 # UNSIGNED CONSTRAINT CHECK (poeng < 11) (var på poeng)
+
 cur.execute('''
   CREATE TABLE IF NOT EXISTS kaffesmaking (
     kaffesmaking_id INT NOT NULL,
@@ -128,6 +123,13 @@ cur.execute('''
   );
 ''')
 
+# Insert values
+kaffebrenneri = (
+    (1, 'Jacobsen & Svart'),
+)
+# Insert into kaffebrenneri
+cur.executemany("INSERT INTO ferdigbrent_kaffe VALUES(?, ?)", kaffebrenneri)
+
 #-----------------------------------------------------
 #         Table `KaffeDB`.`Foredlingsmetode`
 #-----------------------------------------------------
@@ -144,6 +146,13 @@ cur.execute('''
       ON DELETE CASCADE
   );
 ''')
+
+# Insert values
+kaffebrenneri = (
+    (1, 'Jacobsen & Svart'),
+)
+# Insert into kaffebrenneri
+cur.executemany("INSERT INTO ferdigbrent_kaffe VALUES(?, ?)", kaffebrenneri)
 
 #-----------------------------------------------------
 #            Table `KaffeDB`.`Kaffeparti`
