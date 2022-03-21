@@ -82,7 +82,7 @@ cur.execute('''
 ''')
 # Insert values
 ferdigbrent_kaffe = (
-    (1, 'Vinterkaffe 2022', "20.01.2022", "lysbrent", "En velsmakende og kompleks kaffe for mørketiden", 600,00, 1, 1),
+    (1, 'Vinterkaffe 2022', "20.01.2022", "lysbrent", "En velsmakende og kompleks kaffe for mørketiden", 600.00, 1, 1),
 )
 # Insert into into ferdigbrent_kaffe
 cur.executemany("INSERT INTO ferdigbrent_kaffe VALUES(?, ?, ?, ?, ?, ?, ?, ?)", ferdigbrent_kaffe)
@@ -111,6 +111,18 @@ cur.execute('''
   );
 ''')
 
+# Insert values
+kaffesmaking = (
+    (1, 'Wow – en odyssé for smaksløkene: sitrusskall, melkesjokolade, aprikos!', 10, '20.01.2020', 1, 1),
+    (2, 'Veldig dårlig smak', 1, "30.12.2020", 2, 2),
+    (3, 'floral', 4, "03.03.2019", 3, 3),
+    (4, 'Helt Ok', 4, "13.08.2022", 4, 4),
+    (5, 'veldig floral', 4, "7.02.2021", 5, 5),
+    
+)
+# Insert into kaffesmaking
+cur.executemany("INSERT INTO kaffesmaking VALUES(?, ?, ?, ?, ?, ?)", kaffesmaking)
+
 #-----------------------------------------------------
 #           Table `KaffeDB`.`Kaffebrenneri`
 #-----------------------------------------------------
@@ -126,9 +138,13 @@ cur.execute('''
 # Insert values
 kaffebrenneri = (
     (1, 'Jacobsen & Svart'),
+    (2, "Best brenneri EUW"),
+    (3, "Best brenneri NA"),
+    (4, "Brenneri Antonsen"), 
+    (5, "La Brenneria de Casa"), 
 )
 # Insert into kaffebrenneri
-cur.executemany("INSERT INTO ferdigbrent_kaffe VALUES(?, ?)", kaffebrenneri)
+cur.executemany("INSERT INTO kaffebrenneri VALUES(?, ?)", kaffebrenneri)
 
 #-----------------------------------------------------
 #         Table `KaffeDB`.`Foredlingsmetode`
@@ -148,11 +164,11 @@ cur.execute('''
 ''')
 
 # Insert values
-kaffebrenneri = (
-    (1, 'Jacobsen & Svart'),
+foredlingsmetode = (
+    (1, 'Bærtørket', '', 1),
 )
-# Insert into kaffebrenneri
-cur.executemany("INSERT INTO ferdigbrent_kaffe VALUES(?, ?)", kaffebrenneri)
+# Insert into foredlingsmetode
+cur.executemany("INSERT INTO foredlingsmetode VALUES(?, ?, ?, ?)", foredlingsmetode)
 
 #-----------------------------------------------------
 #            Table `KaffeDB`.`Kaffeparti`
@@ -174,6 +190,16 @@ cur.execute('''
   );
 ''')
 
+# Insert values
+kaffeparti = (
+    (1, '2021', 8.0, 1, 1),
+    (2, '2020', 1.5, 2, 2),
+    (3, '2020', 69.0, 3, 3),
+    (4, '2022', 42.0, 4, 4),
+)
+# Insert into kaffeparti
+cur.executemany("INSERT INTO kaffeparti VALUES(?, ?, ?, ?, ?)", kaffeparti)
+
 #-----------------------------------------------------
 #         Table `KaffeDB`.`BestårAv`
 #-----------------------------------------------------
@@ -191,6 +217,17 @@ cur.execute('''
   );
 ''')
 
+# Insert values
+består_av = (
+    (1,1),
+    (2,1),
+    (3,2),
+    (4,3),
+    (5,2),
+)
+# Insert into består_av
+cur.executemany("INSERT INTO består_av VALUES(?, ?)", består_av)
+
 #-----------------------------------------------------
 #         Table `KaffeDB`.`Kaffebønner`
 #-----------------------------------------------------
@@ -203,6 +240,17 @@ cur.execute('''
     CONSTRAINT kaffebønner_pk PRIMARY KEY (kaffebønne_id)
   );
 ''')
+
+# Insert values
+kaffebønner = (
+    (1, 'c. Bourbon', 'c. arabica'),
+    (2, 'Tanzania Peaberry Coffee', 'Den beste arten'),
+    (3, 'Nicaraguan Coffee', 'jeg elsker kaffe'),
+    (4, 'Ethiopian Harrar Coffee', 'c++'),
+    (5, 'Mocha Java Coffee', 'Java'),
+)
+# Insert into kaffebønner
+cur.executemany("INSERT INTO kaffebønner VALUES(?, ?, ?)", kaffebønner)
 
 #-----------------------------------------------------
 #         Table `KaffeDB`.`DyrketAv`
@@ -221,6 +269,14 @@ cur.execute('''
   );
 ''')
 
+# Insert values
+dyrket_av = (
+    (1, 1),
+    (1, 2),
+)
+# Insert into DyrketAv
+cur.executemany("INSERT INTO dyrket_av VALUES(?, ?)", dyrket_av)
+
 #-----------------------------------------------------
 #         Table `KaffeDB`.`Kaffegård`
 #-----------------------------------------------------
@@ -236,6 +292,17 @@ cur.execute('''
       ON DELETE CASCADE 
   );
 ''')
+
+# Insert values
+kaffegård = (
+    (1, 'Nombre de Dios', 1),
+    (2, 'Kaffegård finland perkele', 2),
+    (3, 'Unklabrundur gård', 3),
+    (4, 'Kaffegård', 4),
+    (5, 'Kaffegård2', 5),
+)
+# Insert into kaffegård
+cur.executemany("INSERT INTO kaffegård VALUES(?, ?, ?)", kaffegård)
 
 #-----------------------------------------------------
 #         Table `KaffeDB`.`Region`
@@ -254,6 +321,17 @@ cur.execute('''
   );
 ''')
 
+# Insert values
+region = (
+    (1, "Santa Ana", 1500, 1),
+    (2, "vest-Finland", 123, 2),
+    (3, 'Øst-Vest', 99999, 3),
+    (4, 'På andre siden', -1, 4),
+    (5, 'Java', 69, 5),
+)
+# Insert into region
+cur.executemany("INSERT INTO region VALUES(?, ?, ?, ?)", region)
+
 #-----------------------------------------------------
 #         Table `KaffeDB`.`Land`
 #-----------------------------------------------------
@@ -266,19 +344,23 @@ cur.execute('''
   );
 ''')
 
+# Insert values
+land = (
+    (1, "El Salvador"),
+    (2, "Helsinki"),
+    (3, 'Nord'),
+    (4, 'Nei takk'),
+    (5, 'alt mulig land'),
+)
+# Insert into land
+cur.executemany("INSERT INTO land VALUES(?, ?)", land)
 
 
-cur.execute("SELECT * FROM bruker")
-cur.execute("SELECT * FROM ferdigbrent_kaffe")
-
-#cur.execute("SELECT * FROM bruker WHERE fornavn = Petter", (fornavn))
-
-
+""" cur.execute("SELECT * FROM bruker")
+cur.execute("SELECT * FROM ferdigbrent_kaffe") """
 
 rows = cur.fetchall()
 print(rows)
-
-
 
 # Save (commit) the changes
 con.commit()
@@ -286,5 +368,3 @@ con.commit()
 # We can also close the connection if we are done with it.
 # Just be sure any changes have been committed or they will be lost.
 con.close()
-
-#cur = con.cursor()
