@@ -2,6 +2,9 @@ import sqlite3
 import os
 
 
+def test():
+  print("DEEZ")
+
 path = os.getcwd()
 
 con = sqlite3.connect(f'{path}/kaffe.db')
@@ -94,7 +97,7 @@ ferdigbrent_kaffe = (
     (8, 'Vårkaffe 2023', "2022-03-09 10:00:00", "lysbrent", "Smaker godt på våren :)", 299.00, 5, 3),
     (9, 'Starbuck', "2015-02-16 10:00:00", "lysbrent", "Starbuck 200kr for en kaffe hva i søren", 321.00, 8, 4),
     (10, 'Mocha kaffe', "2020-07-12 10:00:00", "middels brent", "Grønn kaffe som er floral", 421.00, 4, 1),
-    (11, 'Iskaffe', "2021-06-05 10:00:00", "lysbrent", "Yo, that's icecold, I even got the chills🥶hypothermia😥💀", 68.00, 5, 5),
+    (11, 'Iskaffe', "2021-06-05 10:00:00", "lysbrent", "Yo, that's icecold, I even got the chills hypothermia😥💀", 68.00, 5, 5),
     (12, 'Halloween kaffe', "2022-04-09 10:00:00", "middles brent", "Spooky delicious!", 41.00, 5, 3),
 )
 # Insert into into ferdigbrent_kaffe
