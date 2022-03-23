@@ -79,13 +79,14 @@ def run_usecase(case, cursor, newresult, format = "format"):
     # Creates columns from the sqlite3 query
     if format == "format":
         mytable = from_db_cursor(cursor)
+        for row in rows:
+        mytable.add_row(list(row))
+    
+    print(mytable)
         
     print(rows)
     # For each row in the query result:
     # adds a row to the formatted table
-    for row in rows:
-        mytable.add_row(list(row))
     
-    print(mytable)
 
 main()
