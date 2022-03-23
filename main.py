@@ -5,7 +5,7 @@ from prettytable import from_db_cursor
 from prettytable import PrettyTable 
 from kaffedb import test
 
-test()
+#test()
 
 def clearConsole():
     command = 'clear'
@@ -25,7 +25,7 @@ with open("kaffedb.sql", encoding="utf-8") as file:
 def main():
     clearConsole()
 
-    print("Hi and welcome to Kaffe db enjoy")
+    print("Hi and welcome to KaffeDB! Enjoy!")
     print("")
     print("===================")
     print("Type 'quit' to exit")
