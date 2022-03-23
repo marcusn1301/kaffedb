@@ -39,6 +39,7 @@ def main():
     print("===================")
 
     user_history = input("Choose a user history (1 - 5): ")
+    
 
     # Clears the console and displays the current usecase
     def new_result():
@@ -47,10 +48,10 @@ def main():
 
     # Keeps asking the user to input a usecase
     # If the input is not quit, it keeps asking
-    while user_history != "quit":
+    while user_history.lower() != "quit":
 
         # Checks each case from the user input
-        if user_history == "1":   run_usecase(usecase1, cursor, new_result)
+        if user_history == "1":   run_usecase(usecase1, cursor, new_result, "no_format")
         elif user_history == "2": run_usecase(usecase2, cursor, new_result)
         elif user_history == "3": run_usecase(usecase3, cursor, new_result)
         elif user_history == "4": run_usecase(usecase4, cursor, new_result)
@@ -70,14 +71,16 @@ def main():
 
 # Runs a usecase
 # Takes in the casenumber, cursor and the new_result function
-def run_usecase(case, cursor, newresult):
+def run_usecase(case, cursor, newresult, format = "format"):
     newresult()  
     case(cursor)
     rows = cursor.fetchall()
 
     # Creates columns from the sqlite3 query
-    mytable = from_db_cursor(cursor)
+    if format == "format":
+        mytable = from_db_cursor(cursor)
         
+    print(rows)
     # For each row in the query result:
     # adds a row to the formatted table
     for row in rows:
