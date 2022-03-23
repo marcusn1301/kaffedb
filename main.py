@@ -3,26 +3,33 @@ import os
 
 from prettytable import from_db_cursor
 from prettytable import PrettyTable 
-from kaffedb import test
 
-#test()
+from usecases.usecase1 import usecase1
+from usecases.usecase2 import usecase2
+from usecases.usecase3 import usecase3
+from usecases.usecase4 import usecase4
+from usecases.usecase5 import usecase5
 
+# Clears the console
 def clearConsole():
     command = 'clear'
     if os.name in ('nt', 'dos'):  
         command = 'cls'
     os.system(command)
 
+# Creates a connection to the kaffe.db database
+# If the file does not exists, it creates a new one
 connection = sqlite3.connect("kaffe.db")
 cursor = connection.cursor()
 
+# Opens the kaffe.db database and executes the sql script
 with open("kaffedb.sql", encoding="utf-8") as file:
     script = file.read()
     cursor.executescript(script)
     connection.commit()
 
-
 def main():
+    # Greets the user with an introduction
     clearConsole()
 
     print("Hi and welcome to KaffeDB! Enjoy!")
@@ -33,82 +40,46 @@ def main():
 
     user_history = input("Choose a user history (1 - 5): ")
 
+    # Clears the console and displays the current usecase
     def new_result():
         clearConsole()
         print("Result for User Story " + user_history)
 
+    # Keeps asking the user to input a usecase
+    # If the input is not quit, it keeps asking
     while user_history != "quit":
-        # Case 1:
-        if user_history == "1":
-            new_result()
 
-            cursor.execute("SELECT * FROM bruker")
-            close_query()
-
-        elif user_history == "2":
-            new_result()
-
-            cursor.execute("""
-            SELECT b.fornavn, b.etternavn, COUNT(DISTINCT k.navn) as unike_kaffer
-            FROM bruker as b
-            INNER JOIN kaffesmaking as s on b.bruker_id = s.bruker_id
-            INNER JOIN ferdigbrent_kaffe as k on s.ferdigbrent_kaffe_id = k.ferdigbrent_kaffe_id
-            WHERE s.smaksdato > 2022-01-01
-            GROUP BY b.fornavn, b.etternavn
-            ORDER BY unike_kaffer DESC;
-            """)
-            close_query()
-
-        elif user_history == "3":
-            new_result()
-
-            cursor.execute("""         
-            SELECT br.navn as kaffebrenneri, f.navn as kaffe, f.kilopris_nok as pris, ROUND(AVG(s.poeng), 2) as gjennomsnitsscore
-            FROM kaffesmaking as s
-            INNER JOIN ferdigbrent_kaffe as f ON s.ferdigbrent_kaffe_id = f.ferdigbrent_kaffe_id
-            INNER JOIN kaffebrenneri as br ON f.kaffebrenneri_id = br.kaffebrenneri_id
-            GROUP BY f.navn
-            ORDER BY (CAST(AVG(s.poeng) as DECIMAL) / f.kilopris_nok)*1000 DESC; 
-            """)
-            close_query()
-
-        elif user_history == "4":
-            new_result()
-
-            cursor.execute("""
-            SELECT  f.navn, s.smaksnotater, f.beskrivelse
-            FROM kaffesmaking as s
-            LEFT JOIN ferdigbrent_kaffe as f USING(ferdigbrent_kaffe_id)
-            WHERE s.smaksnotater LIKE "%floral%"
-            UNION ALL
-
-            SELECT br.navn, f.navn,  f.beskrivelse
-            FROM ferdigbrent_kaffe as f
-            LEFT JOIN kaffebrenneri as br USING(kaffebrenneri_id)
-            WHERE f.beskrivelse LIKE "%floral%";
-            """)
-            close_query()
-
-        elif user_history == "5":
-            new_result()
-            
-            cursor.execute("SELECT * FROM bruker")
-            close_query()
+        # Checks each case from the user input
+        if user_history == "1":   run_usecase(usecase1, cursor, new_result)
+        elif user_history == "2": run_usecase(usecase2, cursor, new_result)
+        elif user_history == "3": run_usecase(usecase3, cursor, new_result)
+        elif user_history == "4": run_usecase(usecase4, cursor, new_result)
+        elif user_history == "5": run_usecase(usecase5, cursor, new_result)
         
+        # If the input is not a valid input
         else: 
             print("Not a valid input")
 
         user_history = input("Choose a user history (1 - 5): ")
         print("Type 'quit' to exit")
 
+    # Commits the result and closes the prompt
     connection.commit()
     connection.close()
     clearConsole()
 
-def close_query():
+# Runs a usecase
+# Takes in the casenumber, cursor and the new_result function
+def run_usecase(case, cursor, newresult):
+    newresult()  
+    case(cursor)
     rows = cursor.fetchall()
+
+    # Creates columns from the sqlite3 query
     mytable = from_db_cursor(cursor)
         
+    # For each row in the query result:
+    # adds a row to the formatted table
     for row in rows:
         mytable.add_row(list(row))
     
