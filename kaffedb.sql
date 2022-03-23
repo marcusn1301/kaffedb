@@ -28,6 +28,7 @@ INSERT INTO bruker VALUES(5, 'bruker1@gmail.com', "secretkey123", "Rick", "Astle
 INSERT INTO bruker VALUES(6, 'annenbruker@hotmail.com', "bruker1sucks", "Petter", "Stordalen");
 INSERT INTO bruker VALUES(7, 'student@stud.ntnu.com', "12345678", "Peter", "Pan");
 
+
 CREATE TABLE IF NOT EXISTS ferdigbrent_kaffe (
     ferdigbrent_kaffe_id INT NOT NULL,
     navn varchar(50) NOT NULL,
