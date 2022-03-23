@@ -19,11 +19,11 @@ def clearConsole():
 
 # Creates a connection to the kaffe.db database
 # If the file does not exists, it creates a new one
-connection = sqlite3.connect("kaffe.db")
+connection = sqlite3.connect("database/kaffe.db")
 cursor = connection.cursor()
 
 # Opens the kaffe.db database and executes the sql script
-with open("kaffedb.sql", encoding="utf-8") as file:
+with open("database/kaffedb.sql", encoding="utf-8") as file:
     script = file.read()
     cursor.executescript(script)
     connection.commit()
@@ -32,7 +32,7 @@ def main():
     # Greets the user with an introduction
     clearConsole()
 
-    print("Hi and welcome to Kaffe db enjoy")
+    print("Hi and welcome to KaffeDB! Enjoy!")
     print("")
     print("===================")
     print("Type 'quit' to exit")
