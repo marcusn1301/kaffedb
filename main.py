@@ -68,11 +68,6 @@ def main():
         user_history = input("Choose a user history (1 - 5): ")
         print("Type 'quit' or 'q' to exit")
 
-    # Commits the result and closes the prompt
-    connection.commit()
-    connection.close()
-    clearConsole()
-
 # Runs a usecase
 # Takes in the casenumber, cursor and the new_result function
 def run_usecase(case, cursor, newresult, table_name, clear):
