@@ -35,11 +35,11 @@ def main():
     print("Hi and welcome to KaffeDB! Enjoy!")
     print("")
     print("===================")
-    print("Type 'quit' to exit")
+    print("Type 'quit' or 'q' to exit")
     print("===================")
 
     user_history = input("Choose a user history (1 - 5): ")
-    
+    clearConsole()
 
     # Clears the console and displays the current usecase
     def new_result():
@@ -48,10 +48,12 @@ def main():
 
     # Keeps asking the user to input a usecase
     # If the input is not quit, it keeps asking
-    while user_history.lower() != "quit":
+    while True:
+        # If user input is "quit" or "q" the loop stops
+        if (user_history == "quit" or user_history == "q"): return
 
         # Checks each case from the user input
-        if user_history == "1":   run_usecase(usecase1, cursor, new_result, "no_format")
+        if user_history == "1": usecase1(cursor, clearConsole)
         elif user_history == "2": run_usecase(usecase2, cursor, new_result)
         elif user_history == "3": run_usecase(usecase3, cursor, new_result)
         elif user_history == "4": run_usecase(usecase4, cursor, new_result)
@@ -62,7 +64,7 @@ def main():
             print("Not a valid input")
 
         user_history = input("Choose a user history (1 - 5): ")
-        print("Type 'quit' to exit")
+        print("Type 'quit' or 'q' to exit")
 
     # Commits the result and closes the prompt
     connection.commit()
@@ -71,25 +73,21 @@ def main():
 
 # Runs a usecase
 # Takes in the casenumber, cursor and the new_result function
-def run_usecase(case, cursor, newresult, format = "format"):
+def run_usecase(case, cursor, newresult):
     newresult()  
     case(cursor)
     rows = cursor.fetchall()
 
     # Creates columns from the sqlite3 query
-    if format == "format":
-        mytable = from_db_cursor(cursor)
-
-        for row in rows:
-            mytable.add_row(list(row))
     
-        print(mytable)
-    else:
-        print("")
-        row_list = list(rows)
-        for row in row_list:
-            print(row)
-        print("")
+    mytable = from_db_cursor(cursor)
+
+    for row in rows:
+        mytable.add_row(list(row))
+
+    print(mytable)
+
+    
     # For each row in the query result:
     # adds a row to the formatted table
     
