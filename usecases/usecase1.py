@@ -1,3 +1,5 @@
+from rich import print
+
 def usecase1(cursor, clear):
     
     # Skriver ut listen til bruker  
@@ -8,7 +10,7 @@ def usecase1(cursor, clear):
             print(row)
         print("")
         
-    brennerinavn = input("Velg et kaffebrenneri: ")
+    brennerinavn = input(print("[bold cyan]Velg et kaffebrenneri: [/bold cyan]"))
     clear()
 
     cursor.execute(f"""

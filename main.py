@@ -1,6 +1,8 @@
 import sqlite3
 import os
 
+from rich import print
+from rich.table import Table
 from prettytable import from_db_cursor
 from prettytable import PrettyTable 
 
@@ -32,11 +34,11 @@ def main():
     # Greets the user with an introduction
     clearConsole()
 
-    print("Hi and welcome to KaffeDB! Enjoy!")
+    print("Hi and welcome to [bold magenta]KaffeDB[/bold magenta]! Enjoy!")
     print("")
-    print("===================")
-    print("Type 'quit' or 'q' to exit")
-    print("===================")
+    print("[bold green]==============================[/bold green]")
+    print(" Type 'quit' or 'q' to exit ")
+    print("[bold green]==============================[/bold green]")
 
     user_history = input("Choose a user history (1 - 5): ")
     clearConsole()
@@ -77,15 +79,62 @@ def run_usecase(case, cursor, newresult):
     newresult()  
     case(cursor)
     rows = cursor.fetchall()
-
-    # Creates columns from the sqlite3 query
     
-    mytable = from_db_cursor(cursor)
+    field_names = [i[0] for i in cursor.description]
+    print(field_names)
+    table = Table(show_header=True, header_style="bold magenta")
+
+    for field in field_names:
+        table.add_column(field)
+
+    print("ROWS=================")
+    
+    instances = []
+ 
+    
+    for row in rows:
+        eachrow = row
+        liste = []
+        for e in eachrow:
+            liste.append(str(e))
+        #print(tuple(liste))
+        table.add_row(*liste)
+
+        #allRows = ','.join(list([str(i) for i in row]))
+        #print(allRows)
+       # print(mystr)
+        #mystr = ""
+       # instance = (([str(i) for i in row]))
+        #instance_removed = (str(instance).replace("[", "").replace("]", ""))
+       # instances.append(instance_removed).
+    #print(instances)
+        
+        #print(str(instance)[1:-1])
+        #print("")
+        #table.add_row(*(str(instance)[1:-1]))
+        #"""  print(instances)
+        #for instance in instances:
+        #table.add_row(*(instance)) """
+        
+        
+        
+        
+    """ for i in range(len(instances)):
+            table.add_row(instances[i].join) """
+            #table.add_row(instances[_])
+        #table.add_row(*(mystr))
+        #mystr = ""
+        #print(",".join(instances))
+        
+        
+        
+    
+    """ mytable = from_db_cursor(cursor)
 
     for row in rows:
-        mytable.add_row(list(row))
+        mytable.add_row(list(row)) """
 
-    print(mytable)
+    print(table)
 
     
     # For each row in the query result:
