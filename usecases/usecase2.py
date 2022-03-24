@@ -1,4 +1,4 @@
-def usecase2(cursor):
+def usecase2(cursor, clear):
     cursor.execute("""
     SELECT b.fornavn, b.etternavn, COUNT(DISTINCT k.navn) as unike_kaffer
     FROM bruker as b

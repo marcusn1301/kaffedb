@@ -1,4 +1,4 @@
-def usecase5(cursor):
+def usecase5(cursor, clear):
     print("")
     land1 = input("Velg et land du vil søke etter: ")
     land2 = input("Velg et til land du vil søke etter: ")

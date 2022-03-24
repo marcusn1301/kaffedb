@@ -1,4 +1,4 @@
-def usecase3(cursor):
+def usecase3(cursor, clear):
     cursor.execute("""         
     SELECT br.navn as kaffebrenneri, f.navn as kaffe, f.kilopris_nok as pris, ROUND(AVG(s.poeng), 2) as gjennomsnitsscore
     FROM kaffesmaking as s

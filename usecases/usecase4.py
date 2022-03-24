@@ -1,5 +1,6 @@
-def usecase4(cursor):
-    x = input("Velg et ord du vil søke etter: ")
+def usecase4(cursor, clear):
+    x = input("Velg et smaksnotat eller en beskrivelse du vil søke etter: ")
+    clear()
 
     cursor.execute(f"""
     SELECT  f.navn, s.smaksnotater, f.beskrivelse

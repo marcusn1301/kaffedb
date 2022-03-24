@@ -3,6 +3,7 @@ import os
 
 from rich import print
 from rich.table import Table
+from rich.console import Console
 from prettytable import from_db_cursor
 from prettytable import PrettyTable 
 
@@ -36,6 +37,8 @@ def main():
 
     print("Hi and welcome to [bold magenta]KaffeDB[/bold magenta]! Enjoy!")
     print("")
+    print("[cyan]Use a large console for best experience[/cyan]")
+    print("")
     print("[bold green]==============================[/bold green]")
     print(" Type 'quit' or 'q' to exit ")
     print("[bold green]==============================[/bold green]")
@@ -46,7 +49,6 @@ def main():
     # Clears the console and displays the current usecase
     def new_result():
         clearConsole()
-        print("Result for User Story " + user_history)
 
     # Keeps asking the user to input a usecase
     # If the input is not quit, it keeps asking
@@ -56,10 +58,10 @@ def main():
 
         # Checks each case from the user input
         if user_history == "1": usecase1(cursor, clearConsole)
-        elif user_history == "2": run_usecase(usecase2, cursor, new_result)
-        elif user_history == "3": run_usecase(usecase3, cursor, new_result)
-        elif user_history == "4": run_usecase(usecase4, cursor, new_result)
-        elif user_history == "5": run_usecase(usecase5, cursor, new_result)
+        elif user_history == "2": run_usecase(usecase2, cursor, new_result, "usecase 2", clearConsole)
+        elif user_history == "3": run_usecase(usecase3, cursor, new_result, "usecase 3", clearConsole)
+        elif user_history == "4": run_usecase(usecase4, cursor, new_result, "usecase 4", clearConsole)
+        elif user_history == "5": run_usecase(usecase5, cursor, new_result, "usecase 5", clearConsole)
         
         # If the input is not a valid input
         else: 
@@ -75,70 +77,37 @@ def main():
 
 # Runs a usecase
 # Takes in the casenumber, cursor and the new_result function
-def run_usecase(case, cursor, newresult):
+def run_usecase(case, cursor, newresult, table_name, clear):
     newresult()  
-    case(cursor)
+    case(cursor, clear)
     rows = cursor.fetchall()
     
     field_names = [i[0] for i in cursor.description]
-    print(field_names)
-    table = Table(show_header=True, header_style="bold magenta")
+    table = Table(show_header=True, header_style="bold magenta", title=f"Table for {table_name}")
 
     for field in field_names:
         table.add_column(field)
-
-    print("ROWS=================")
-    
-    instances = []
- 
-    
-    for row in rows:
-        eachrow = row
+        
+    for eachrow in rows:
         liste = []
         for e in eachrow:
             liste.append(str(e))
-        #print(tuple(liste))
         table.add_row(*liste)
-
-        #allRows = ','.join(list([str(i) for i in row]))
-        #print(allRows)
-       # print(mystr)
-        #mystr = ""
-       # instance = (([str(i) for i in row]))
-        #instance_removed = (str(instance).replace("[", "").replace("]", ""))
-       # instances.append(instance_removed).
-    #print(instances)
-        
-        #print(str(instance)[1:-1])
-        #print("")
-        #table.add_row(*(str(instance)[1:-1]))
-        #"""  print(instances)
-        #for instance in instances:
-        #table.add_row(*(instance)) """
-        
-        
-        
-        
-    """ for i in range(len(instances)):
-            table.add_row(instances[i].join) """
-            #table.add_row(instances[_])
-        #table.add_row(*(mystr))
-        #mystr = ""
-        #print(",".join(instances))
-        
-        
-        
     
-    """ mytable = from_db_cursor(cursor)
-
-    for row in rows:
-        mytable.add_row(list(row)) """
-
-    print(table)
-
+    console = Console()
+    console.print(table)
     
-    # For each row in the query result:
-    # adds a row to the formatted table
+    """     table2 = Table(title="Star Wars Movies")
+
+    table2.add_column("Released", justify="right", style="cyan", no_wrap=True)
+    table2.add_column("Title", style="magenta")
+    table2.add_column("Box Office", justify="right", style="green")
+
+    table2.add_row("Dec 20, 2019", "Star Wars: The Rise of Skywalker", "$952,110,690")
+    table2.add_row("May 25, 2018", "Solo: A Star Wars Story", "$393,151,347")
+    table2.add_row("Dec 15, 2017", "Star Wars Ep. V111: The Last Jedi", "$1,332,539,889")
+    table2.add_row("Dec 16, 2016", "Rogue One: A Star Wars Story", "$1,332,439,889")
     
+    console.print(table2) """
 
 main()
