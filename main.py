@@ -4,8 +4,6 @@ import os
 from rich import print
 from rich.table import Table
 from rich.console import Console
-from prettytable import from_db_cursor
-from prettytable import PrettyTable 
 
 from usecases.usecase1 import usecase1
 from usecases.usecase2 import usecase2
@@ -96,18 +94,5 @@ def run_usecase(case, cursor, newresult, table_name, clear):
     
     console = Console()
     console.print(table)
-    
-    """     table2 = Table(title="Star Wars Movies")
-
-    table2.add_column("Released", justify="right", style="cyan", no_wrap=True)
-    table2.add_column("Title", style="magenta")
-    table2.add_column("Box Office", justify="right", style="green")
-
-    table2.add_row("Dec 20, 2019", "Star Wars: The Rise of Skywalker", "$952,110,690")
-    table2.add_row("May 25, 2018", "Solo: A Star Wars Story", "$393,151,347")
-    table2.add_row("Dec 15, 2017", "Star Wars Ep. V111: The Last Jedi", "$1,332,539,889")
-    table2.add_row("Dec 16, 2016", "Rogue One: A Star Wars Story", "$1,332,439,889")
-    
-    console.print(table2) """
 
 main()

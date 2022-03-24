@@ -40,7 +40,7 @@ def usecase1(cursor, clear):
         WHERE br.navn like "%{brennerinavn}%";
         """)
 
-    print("Liste over Kaffebrennerier")
+    print("[bold magenta]Liste over Kaffebrennerier[/bold magenta]")
     clear()
     print("")
 
@@ -58,7 +58,7 @@ def usecase1(cursor, clear):
     
     make_table()
     
-    print("Påtide å rate kaffen🤨😐😛🤤🤣")
+    print("[bold magenta]Påtide å rate kaffen[/bold magenta]🤨😐😛🤤🤣")
     
     while True:
         poeng = input("Hvor mange poeng vil du gi kaffen (1-10)?: ")
@@ -71,28 +71,18 @@ def usecase1(cursor, clear):
     smaksnotat = input("Gi kaffen et smaksnotat: ")
     clear()
 
-    cursor.execute(f"INSERT INTO kaffesmaking VALUES(100, '{smaksnotat}', {poeng}, 2022-03-24, 1, {kaffeid});")
+    cursor.execute(f"INSERT INTO kaffesmaking VALUES(100, '{smaksnotat}', '{poeng}', '2022-03-24 10:00:00', 1, {kaffeid});")
     
-    print("Her er dine kaffesmakinger:")
+    print("[bold magenta]Her er din kaffesmaking: [/bold magenta]")
     print("")
     
     cursor.execute("""
-    SELECT * 
+    SELECT br.navn as brenneri, k.navn as kaffe, s.smaksnotater as smaksnotat, s.poeng
     FROM kaffesmaking as s
     INNER JOIN bruker as b USING(bruker_id)
-    WHERE b.bruker_id = 1;
+    INNER JOIN ferdigbrent_kaffe as k USING(ferdigbrent_kaffe_id)
+    INNER JOIN kaffebrenneri as br USING(kaffebrenneri_id)
+    WHERE s.kaffesmaking_id = 100;
     """)
 
     make_table()
-
-    # Sprørsmål:
-    # Skal bruker smake på en eksisterende kaffe?
-    # Fks. at vi lister opp alle alternativene til brukeren 
-
-"""     cursor.execute("INSERT INTO bruker VALUES(100, 'bruker@gmail.com', 'brukerpassord' 'brukerfornavn', 'brukeretternavn');")
-    cursor.execute(f"INSERT INTO kaffesmaking VALUES(100, '{smaksnotat}', {poeng}, 2022-03-24);")
-    cursor.execute(f"INSERT INTO ferdigbrent_kaffe VALUES(100, '{kaffenavn}', '2022-01-20 10:00:00', 'middels brent', 'en velsmakende og kompleks kaffe for mørketiden');")
-    cursor.execute("INSERT INTO ferdigbrent_kaffe VALUES(100, );")
-    cursor.execute("INSERT INTO ferdigbrent_kaffe VALUES();")
-    cursor.execute("INSERT INTO ferdigbrent_kaffe VALUES();")
-    cursor.execute("INSERT INTO ferdigbrent_kaffe VALUES();") """

@@ -1,1 +1,0 @@
-SELECT br.navn, k.navn

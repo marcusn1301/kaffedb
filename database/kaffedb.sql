@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS kaffesmaking (
         ON DELETE CASCADE
 );
 
-INSERT INTO kaffesmaking VALUES(1, 'wow – en odyssé for smaksløkene: sitrusskall, melkesjokolade, aprikos!', 10, '2020-01-20 10:00:00', 1, 1);
+INSERT INTO kaffesmaking VALUES(1, 'pretty good coffee', 5, '2020-01-20 10:00:00', 4, 2);
 INSERT INTO kaffesmaking VALUES(2, 'veldig dårlig smak', 1, "2020-12-30 10:00:00", 2, 1);
 INSERT INTO kaffesmaking VALUES(3, 'floral', 7, "2019-03-03 10:00:00", 3, 1);
 INSERT INTO kaffesmaking VALUES(4, 'helt Ok', 1, "2022-08-13 10:00:00", 4, 1);
