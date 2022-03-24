@@ -49,6 +49,8 @@ def main():
     # Clears the console and displays the current usecase
     def new_result():
         clearConsole()
+        print("Type 'quit' or 'q' to exit")
+        print("")
 
     # Keeps asking the user to input a usecase
     # If the input is not quit, it keeps asking
@@ -68,7 +70,7 @@ def main():
             print("Not a valid input")
 
         user_history = input("Choose a user history (1 - 5): ")
-        print("Type 'quit' or 'q' to exit")
+        
 
 # Runs a usecase
 # Takes in the casenumber, cursor and the new_result function
