@@ -1,4 +1,6 @@
 # kaffedb
 Kaffedb
 
-Husk å kjøre 'pip install -r requirements.txt' i terminalen.
+Kjør 'pip install -r requirements.txt' i terminalen.
+
+Deretter er det bare å kjøre main.py.
