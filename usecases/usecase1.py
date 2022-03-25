@@ -81,7 +81,7 @@ def usecase1(cursor, clear):
     # If the user types an invalid input, you try again
     while True:
         poeng = input("Hvor mange poeng vil du gi kaffen (1-10)?: ")
-        if (int(poeng) < 11 and int(poeng) > 0): break
+        if (poeng.isnumeric()) and (int(poeng) < 11 and int(poeng) > 0): break  
         
         clear()
         print("Poeng må må være et tall mellom 1 og 10! Prøv igjen!")
