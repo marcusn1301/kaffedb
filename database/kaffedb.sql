@@ -58,7 +58,7 @@ INSERT INTO ferdigbrent_kaffe VALUES(7, 'høstkaffe 2021', "2019-09-25 10:00:00"
 INSERT INTO ferdigbrent_kaffe VALUES(8, 'vårkaffe 2023', "2022-03-09 10:00:00", "lysbrent", "smaker godt på våren :)", 299.00, 5, 3);
 INSERT INTO ferdigbrent_kaffe VALUES(9, 'starbuck', "2015-02-16 10:00:00", "lysbrent", "starbuck 200kr for en kaffe hva i søren", 321.00, 8, 4);
 INSERT INTO ferdigbrent_kaffe VALUES(10, 'mocha kaffe', "2020-07-12 10:00:00", "middels brent", "grønn kaffe som er floral", 421.00, 4, 1);
-INSERT INTO ferdigbrent_kaffe VALUES(11, 'iskaffe', "2021-06-05 10:00:00", "lysbrent", "yo, that's icecold, I even got the chills hypothermia😥💀", 68.00, 5, 5);
+INSERT INTO ferdigbrent_kaffe VALUES(11, 'iskaffe', "2021-06-05 10:00:00", "lysbrent", "yo, that's icecold, I even got the chills", 68.00, 5, 5);
 INSERT INTO ferdigbrent_kaffe VALUES(12, 'halloween kaffe', "2022-04-09 10:00:00", "middles brent", "spooky delicious!", 41.00, 1, 3);
 INSERT INTO ferdigbrent_kaffe VALUES(13, 'kaffe', "2022-04-09 10:00:00", "middles brent", "delicious!", 41.00, 9, 3);
 
@@ -87,7 +87,7 @@ INSERT INTO kaffesmaking VALUES(6, 'smaker sopp mmmh kantarell', 4, "2022-02-17 
 INSERT INTO kaffesmaking VALUES(7, 'ikke god, ikke dårlig', 4, "2022-02-27 10:00:00", 2, 2);
 INSERT INTO kaffesmaking VALUES(8, 'mening1', 4, "2022-03-02 10:00:00", 3, 3);
 INSERT INTO kaffesmaking VALUES(9, 'mening2', 9, "2022-02-18 10:00:00", 4, 7);
-INSERT INTO kaffesmaking VALUES(10, 'jeg har ikke en mening (NPC)🥴😵🤖', 4, "2022-02-21 10:00:00", 5, 8);
+INSERT INTO kaffesmaking VALUES(10, 'jeg har ikke en mening (NPC)', 4, "2022-02-21 10:00:00", 5, 8);
 INSERT INTO kaffesmaking VALUES(11, 'gi meg pengene tilbake vær så snill', 4, "2022-02-22 10:00:00", 5, 10);
 INSERT INTO kaffesmaking VALUES(12, 'iphon 11', 4, "2022-02-08 10:00:00", 3, 6);
 INSERT INTO kaffesmaking VALUES(13, 'asdasdasd', 8, "2022-02-02 10:00:00", 3, 3);
@@ -116,8 +116,8 @@ CREATE TABLE IF NOT EXISTS foredlingsmetode (
     CONSTRAINT foredlingsmetode_pk PRIMARY KEY (foredlingsmetode_id)
 );
 
-INSERT INTO foredlingsmetode VALUES(1, 'bærtørket', 'tørker bærene lol😁😁😁😁🍒🍓');
-INSERT INTO foredlingsmetode VALUES(2, 'vasket', 'washy washy🦝🦝');
+INSERT INTO foredlingsmetode VALUES(1, 'bærtørket', 'bærene tørkes i sola');
+INSERT INTO foredlingsmetode VALUES(2, 'vasket', 'bærene er vasket');
 
 CREATE TABLE IF NOT EXISTS kaffeparti (
     parti_id INT NOT NULL,

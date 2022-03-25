@@ -66,7 +66,7 @@ def usecase1(cursor, clear):
     
     make_table()
     
-    print("[bold magenta]Påtide å rate kaffen[/bold magenta]🤨😐😛🤤🤣")
+    print("[bold magenta]Påtide å rate kaffen[/bold magenta]")
     
     # If the user types an invalid input, you try again
     while True:
@@ -74,7 +74,7 @@ def usecase1(cursor, clear):
         if (int(poeng) < 10 and int(poeng) > 0): break
        
         clear()
-        print("Det er ikke lov!😡 Prøv igjen!😡")
+        print("Poeng må må være et tall mellom 1 og 10! Prøv igjen!")
 
     clear()
     smaksnotat = input("Gi kaffen et smaksnotat: ")
