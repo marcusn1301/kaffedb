@@ -1,7 +1,7 @@
 def usecase5(cursor, clear):
-    land1 = input("Velg et land du vil søke etter: ")
-    land2 = input("Velg et til land du vil søke etter: ")
-    ikke_metode = input("Velg en foredlingsmetode du IKKE liker: ")
+    land1 = input("Skriv inn et land du vil søke etter: ")
+    land2 = input("Skriv inn et til land du vil søke etter: ")
+    ikke_metode = input("Skriv inn en uønsket foredlingsmetode: ")
     clear()
 
     # Executes a query where the user is prompted to type two countries and an
