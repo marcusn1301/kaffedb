@@ -56,7 +56,7 @@ def usecase1(cursor, clear):
         SELECT f.ferdigbrent_kaffe_id as kaffe_id, f.navn as kaffenavn, br.navn as brennerinavn 
         FROM ferdigbrent_kaffe as f
         INNER JOIN kaffebrenneri as br USING(kaffebrenneri_id)
-        WHERE br.navn like "%{brennerinavn}%";
+        WHERE br.navn like "%{brennerinavn.lower()}%";
         """)
 
     print("[bold magenta]Liste over Kaffebrennerier[/bold magenta]")
@@ -71,7 +71,7 @@ def usecase1(cursor, clear):
         SELECT f.ferdigbrent_kaffe_id as kaffe_id, f.navn as kaffe, br.navn as brenneri
         FROM ferdigbrent_kaffe as f
         INNER JOIN kaffebrenneri as br USING(kaffebrenneri_id)
-        WHERE br.navn like "%{brennerinavn}%" AND kaffe_id = {kaffeid};
+        WHERE br.navn like "%{brennerinavn.lower()}%" AND kaffe_id = {kaffeid};
         """)
     
     make_table()
@@ -90,7 +90,7 @@ def usecase1(cursor, clear):
     smaksnotat = input("Gi kaffen et smaksnotat: ")
     clear()
 
-    cursor.execute(f"INSERT INTO kaffesmaking VALUES(100, '{smaksnotat}', '{poeng}', '2022-03-25 15:35:00', 1, {kaffeid});")    
+    cursor.execute(f"INSERT INTO kaffesmaking VALUES(100, '{smaksnotat.lower()}', '{poeng}', '2022-03-25 15:35:00', 1, {kaffeid});")    
     
     cursor.execute(f"""
     SELECT  f.navn, br.navn as brenneri, s.poeng, s.smaksnotater, f.beskrivelse, f.kilopris_nok, fm.navn as foredlingsmetode, 
