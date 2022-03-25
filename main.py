@@ -63,8 +63,7 @@ def main():
         
         # If the input is not a valid input
         else: 
-            print("Type 'quit' or 'q' to exit")
-            print("")
+            clearConsole()
             print("[bold magenta]Not a valid input[/bold magenta]")
 
         user_history = input("Choose a user history (1 - 5): ")
