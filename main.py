@@ -17,6 +17,8 @@ def clearConsole():
     if os.name in ('nt', 'dos'):  
         command = 'cls'
     os.system(command)
+    print("Type 'quit' or 'q' to exit")
+    print("")
 
 # Creates a connection to the kaffe.db database
 # If the file does not exists, it creates a new one
@@ -37,9 +39,6 @@ def main():
     print("")
     print("[cyan]Use a large console for best experience[/cyan]")
     print("")
-    print("[bold green]==============================[/bold green]")
-    print(" Type 'quit' or 'q' to exit ")
-    print("[bold green]==============================[/bold green]")
 
     user_history = input("Choose a user history (1 - 5): ")
     clearConsole()
@@ -47,8 +46,6 @@ def main():
     # Clears the console and displays the current usecase
     def new_result():
         clearConsole()
-        print("Type 'quit' or 'q' to exit")
-        print("")
 
     # Keeps asking the user to input a usecase
     # If the input is not quit, it keeps asking
@@ -66,7 +63,9 @@ def main():
         
         # If the input is not a valid input
         else: 
-            print("Not a valid input")
+            print("Type 'quit' or 'q' to exit")
+            print("")
+            print("[bold magenta]Not a valid input[/bold magenta]")
 
         user_history = input("Choose a user history (1 - 5): ")
         
@@ -88,10 +87,20 @@ def run_usecase(case, cursor, newresult, table_name, clear):
     
     # For each row, it makes all the elements in the tuples to strings
     # then it appends the strings into a list and casts it to a tuple again
+
+    # For every second row, all the elements in the row will have a given color
+    def color(e, i, liste):
+        if i % 2 == 0:
+            liste.append((str(f"[bold magenta]{e}[/bold magenta]")))
+        else:
+            liste.append((str(e)))
+    i = 1
     for eachrow in rows:
         liste = []
         for e in eachrow:
-            liste.append(str(e))
+            color(e, i, liste)
+        i += 1 
+
         table.add_row(*liste)
     
     console = Console()

@@ -3,4 +3,4 @@ Kaffedb
 
 Run 'pip install -r requirements.txt' in the terminal.
 
-Run main.py.
+Run main.py as python-file.

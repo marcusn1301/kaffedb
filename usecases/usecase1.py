@@ -4,6 +4,10 @@ from rich.console import Console
 
 def usecase1(cursor, clear):
     
+    def quit():
+        print("Type 'quit' or 'q' to exit")
+        print("")
+    
     # Skriver ut listen til bruker  
     def show_table():
         rows = cursor.fetchall()
@@ -27,11 +31,18 @@ def usecase1(cursor, clear):
         
         # For hver rad gjøres hvert element om til strings og legges til i en ny liste
         # Deretter blir de omgjort til tupler som legges til i den formaterte tabellen
-        for row in rows:
-            eachrow = row
+        def color(e, i, liste):
+            if i % 2 == 0:
+                liste.append((str(f"[bold magenta]{e}[/bold magenta]")))
+            else:
+                liste.append((str(e)))
+        i = 1
+        for eachrow in rows:
             liste = []
             for e in eachrow:
-                liste.append(str(e))
+                color(e, i, liste)
+            i += 1 
+
             table.add_row(*liste)
         
         # Printer den formaterte tabellen
@@ -50,7 +61,6 @@ def usecase1(cursor, clear):
 
     print("[bold magenta]Liste over Kaffebrennerier[/bold magenta]")
     clear()
-    print("")
 
     make_table()
 
@@ -65,14 +75,14 @@ def usecase1(cursor, clear):
         """)
     
     make_table()
-    
+    print("")
     print("[bold magenta]Påtide å rate kaffen[/bold magenta]")
     
     # If the user types an invalid input, you try again
     while True:
         poeng = input("Hvor mange poeng vil du gi kaffen (1-10)?: ")
-        if (int(poeng) < 10 and int(poeng) > 0): break
-       
+        if (int(poeng) < 11 and int(poeng) > 0): break
+        
         clear()
         print("Poeng må må være et tall mellom 1 og 10! Prøv igjen!")
 
@@ -80,18 +90,24 @@ def usecase1(cursor, clear):
     smaksnotat = input("Gi kaffen et smaksnotat: ")
     clear()
 
-    cursor.execute(f"INSERT INTO kaffesmaking VALUES(100, '{smaksnotat}', '{poeng}', '2022-03-24 10:00:00', 1, {kaffeid});")
+    cursor.execute(f"INSERT INTO kaffesmaking VALUES(100, '{smaksnotat}', '{poeng}', '2022-03-25 15:35:00', 1, {kaffeid});")    
     
-    print("[bold magenta]Her er din kaffesmaking: [/bold magenta]")
-    print("")
-    
-    cursor.execute("""
-    SELECT br.navn as brenneri, k.navn as kaffe, s.smaksnotater as smaksnotat, s.poeng
+    cursor.execute(f"""
+    SELECT  f.navn, br.navn as brenneri, s.poeng, s.smaksnotater, f.beskrivelse, f.kilopris_nok, fm.navn as foredlingsmetode, 
+    kb.navn as bønne, kg.navn as kaffegård, r.moh, r.navn as region, l.navn as land
     FROM kaffesmaking as s
-    INNER JOIN bruker as b USING(bruker_id)
-    INNER JOIN ferdigbrent_kaffe as k USING(ferdigbrent_kaffe_id)
+    INNER JOIN ferdigbrent_kaffe as f USING(ferdigbrent_kaffe_id)
     INNER JOIN kaffebrenneri as br USING(kaffebrenneri_id)
-    WHERE s.kaffesmaking_id = 100;
+    INNER JOIN kaffeparti as kp USING(parti_id)
+    INNER JOIN foredlingsmetode as fm USING(foredlingsmetode_id)
+    INNER JOIN består_av as ba USING(parti_id)
+    INNER JOIN kaffebønner as kb USING(kaffebønne_id)
+    INNER JOIN kaffegård as kg USING(kaffegård_id)
+    INNER JOIN region as r USING(region_id)
+    INNER JOIN land as l USING(land_id)
+    WHERE s.kaffesmaking_id = 100
     """)
 
+    print("[bold magenta]Her er din kaffesmaking: [/bold magenta]")
+    print("")
     make_table()
