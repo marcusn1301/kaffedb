@@ -57,6 +57,7 @@ def main():
         if (user_history == "quit" or user_history == "q"): return
 
         # Checks each case from the user input
+        # run_usecase takes in 5 arguments and passes them down to their function calls
         if user_history == "1": usecase1(cursor, clearConsole)
         elif user_history == "2": run_usecase(usecase2, cursor, new_result, "usecase 2", clearConsole)
         elif user_history == "3": run_usecase(usecase3, cursor, new_result, "usecase 3", clearConsole)
@@ -71,18 +72,22 @@ def main():
         
 
 # Runs a usecase
-# Takes in the casenumber, cursor and the new_result function
+# Takes in the casenumber, cursor and the new_result function, table title, and the clearConsole function
 def run_usecase(case, cursor, newresult, table_name, clear):
     newresult()  
     case(cursor, clear)
     rows = cursor.fetchall()
     
+    # Gets the columns from the database query
     field_names = [i[0] for i in cursor.description]
     table = Table(show_header=True, header_style="bold magenta", title=f"Table for {table_name}")
 
+    # Adds the columns to the formatted table (rich)
     for field in field_names:
         table.add_column(field)
-        
+    
+    # For each row, it makes all the elements in the tuples to strings
+    # then it appends the strings into a list and casts it to a tuple again
     for eachrow in rows:
         liste = []
         for e in eachrow:

@@ -3,6 +3,8 @@ def usecase5(cursor, clear):
     land2 = input("Velg et til land du vil søke etter: ")
     ikke_metode = input("Velg en foredlingsmetode du ikke liker: ")
 
+    # Executes a query where the user is prompted to type two countries and an
+    # unwanted processing method.
     cursor.execute(f"""
     SELECT br.navn as brennerinavn, k.navn as kaffenavn
     FROM ferdigbrent_kaffe as k
