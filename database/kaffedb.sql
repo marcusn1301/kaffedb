@@ -53,10 +53,8 @@ INSERT INTO ferdigbrent_kaffe VALUES(2, 'rusten kaffe', "2021-03-04 10:00:00", "
 INSERT INTO ferdigbrent_kaffe VALUES(3, 'esporesso', "2021-02-09 10:00:00", "lysbrent", "Espresse, men med O", 499.00, 5, 1);
 INSERT INTO ferdigbrent_kaffe VALUES(4, 'caffè americano', "2020-09-26 10:00:00", "mørkbrent", "en amerikansk kaffe, ekstra stor og billig", 200.00, 3, 4);
 INSERT INTO ferdigbrent_kaffe VALUES(5, 'sommerkaffe 2021', "2020-11-01 10:00:00", "mørkbrent", "it's koffe, but only drink floral during summer", 299.00, 7, 5);
-INSERT INTO ferdigbrent_kaffe VALUES(6, 'gangsterkaffe 420', "2022-05-21 10:00:00", "lysbrent", "eyo ", 459.00, 6, 2);
 INSERT INTO ferdigbrent_kaffe VALUES(7, 'høstkaffe 2021', "2019-09-25 10:00:00", "middels brent", "only drink høst", 420, 2, 2);
 INSERT INTO ferdigbrent_kaffe VALUES(8, 'vårkaffe 2023', "2022-03-09 10:00:00", "lysbrent", "smaker godt på våren :)", 299.00, 5, 3);
-INSERT INTO ferdigbrent_kaffe VALUES(9, 'starbuck', "2015-02-16 10:00:00", "lysbrent", "starbuck 200kr for en kaffe hva i søren", 321.00, 8, 4);
 INSERT INTO ferdigbrent_kaffe VALUES(10, 'mocha kaffe', "2020-07-12 10:00:00", "middels brent", "grønn kaffe som er floral", 421.00, 4, 1);
 INSERT INTO ferdigbrent_kaffe VALUES(11, 'iskaffe', "2021-06-05 10:00:00", "lysbrent", "yo, that's icecold, I even got the chills", 68.00, 5, 5);
 INSERT INTO ferdigbrent_kaffe VALUES(12, 'halloween kaffe', "2022-04-09 10:00:00", "middles brent", "spooky delicious!", 41.00, 1, 3);
@@ -80,10 +78,10 @@ CREATE TABLE IF NOT EXISTS kaffesmaking (
 
 INSERT INTO kaffesmaking VALUES(1, 'pretty good coffee', 5, '2020-01-20 10:00:00', 4, 2);
 INSERT INTO kaffesmaking VALUES(2, 'veldig dårlig smak', 1, "2020-12-30 10:00:00", 2, 1);
-INSERT INTO kaffesmaking VALUES(3, 'floral', 7, "2019-03-03 10:00:00", 3, 1);
+INSERT INTO kaffesmaking VALUES(3, 'floral', 5, "2019-03-03 10:00:00", 3, 1);
 INSERT INTO kaffesmaking VALUES(4, 'helt Ok', 1, "2022-08-13 10:00:00", 4, 1);
-INSERT INTO kaffesmaking VALUES(5, 'decent, mamma lager bedre tbh (L + ratio) BOZO', 3, "2022-02-12 10:00:00", 1, 1);
-INSERT INTO kaffesmaking VALUES(6, 'smaker sopp mmmh kantarell', 4, "2022-02-17 10:00:00", 1, 1);
+INSERT INTO kaffesmaking VALUES(5, 'decent, mamma lager bedre tbh (L + ratio) BOZO', 2, "2022-02-12 10:00:00", 1, 1);
+INSERT INTO kaffesmaking VALUES(6, 'smaker sopp mmmh kantarell', 3, "2022-02-17 10:00:00", 1, 1);
 INSERT INTO kaffesmaking VALUES(7, 'ikke god, ikke dårlig', 4, "2022-02-27 10:00:00", 2, 2);
 INSERT INTO kaffesmaking VALUES(8, 'mening1', 4, "2022-03-02 10:00:00", 3, 3);
 INSERT INTO kaffesmaking VALUES(9, 'mening2', 9, "2022-02-18 10:00:00", 4, 7);
@@ -93,8 +91,7 @@ INSERT INTO kaffesmaking VALUES(12, 'iphon 11', 4, "2022-02-08 10:00:00", 3, 6);
 INSERT INTO kaffesmaking VALUES(13, 'asdasdasd', 8, "2022-02-02 10:00:00", 3, 3);
 INSERT INTO kaffesmaking VALUES(14, 'meget floral', 4, "2022-02-01 10:00:00", 6, 7);
 INSERT INTO kaffesmaking VALUES(15, 'scrumptious', 10, "2022-02-11 10:00:00", 7, 8);
-INSERT INTO kaffesmaking VALUES(16, 'breedable and submissive', 3, "2022-02-28 10:00:00", 1, 9);
-INSERT INTO kaffesmaking VALUES(17, 'emil (8) liker den fordi den er floral', 5, "2021-02-13 10:00:00", 1, 2);
+INSERT INTO kaffesmaking VALUES(17, 'emil (8) liker den fordi den er floral', 5, "2021-02-13 10:00:00", 3, 2);
 INSERT INTO kaffesmaking VALUES(18, 'jeg liker denne kaffen den er god', 2, "2021-02-14 10:00:00", 3, 2);
 
 CREATE TABLE IF NOT EXISTS kaffebrenneri (

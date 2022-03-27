@@ -93,7 +93,7 @@ def usecase1(cursor, clear):
     cursor.execute(f"INSERT INTO kaffesmaking VALUES(100, '{smaksnotat.lower()}', '{poeng}', '2022-03-25 15:35:00', 1, {kaffeid});")    
     
     cursor.execute(f"""
-    SELECT  f.navn, br.navn as brenneri, s.poeng, s.smaksnotater, f.beskrivelse, f.kilopris_nok, fm.navn as foredlingsmetode, 
+    SELECT  f.navn, br.navn as brenneri, s.poeng, s.smaksnotater, f.beskrivelse, f.kilopris_nok, fm.navn as foredlingsmetode, f.brenningsgrad as brenningsgrad,
     kb.navn as bønne, kg.navn as kaffegård, r.moh, r.navn as region, l.navn as land
     FROM kaffesmaking as s
     INNER JOIN ferdigbrent_kaffe as f USING(ferdigbrent_kaffe_id)
